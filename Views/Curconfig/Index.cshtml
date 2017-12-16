@@ -1,0 +1,141 @@
+﻿@model IEnumerable<CurApi.Models.curconvconfig>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvLocFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvBasCurFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvConCurFk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvByRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvSelRt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvEffFrm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvEffTo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvConvVal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvCutOffTm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvFcr1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvFcr2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvFcr3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvRowid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvCreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvCreatedDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvModifiedDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvDelFlg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrvDelId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvLocFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvBasCurFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvConCurFk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvByRt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvSelRt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvEffFrm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvEffTo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvConvVal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvCutOffTm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvFcr1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvFcr2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvFcr3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvRowid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvCreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvCreatedDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvModifiedDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvDelFlg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrvDelId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CrvPk }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CrvPk }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CrvPk })
+        </td>
+    </tr>
+}
+
+</table>

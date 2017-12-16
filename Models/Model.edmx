@@ -1,0 +1,993 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SampleDB_EFModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Assets">
+          <Key>
+            <PropertyRef Name="AssetID" />
+          </Key>
+          <Property Name="AssetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssetName" Type="varchar" MaxLength="50" />
+          <Property Name="RoomID" Type="int" />
+        </EntityType>
+        <EntityType Name="CmpDet">
+          <Key>
+            <PropertyRef Name="CmpPk" />
+          </Key>
+          <Property Name="CmpCd" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpDispNm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="bigint" />
+          <Property Name="CmpPk" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CmpRowid" Type="uniqueidentifier" />
+          <Property Name="CmpCreatedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpModifiedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpDelFlg" Type="char" MaxLength="15" />
+          <Property Name="CmpDelId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SampleDB_EF.dbo.cmpmas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="cmpmas">
+          <Key>
+            <PropertyRef Name="companynm" />
+          </Key>
+          <Property Name="companynm" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="dispord" Type="int" />
+        </EntityType>
+        <EntityType Name="ProFaCurConvConfig">
+          <Key>
+            <PropertyRef Name="CrvPk" />
+          </Key>
+          <Property Name="CrvLocFk" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvBasCurFk" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvConCurFk" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvByRt" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CrvSelRt" Type="numeric" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CrvEffFrm" Type="datetime" Nullable="false" />
+          <Property Name="CrvEffTo" Type="datetime" />
+          <Property Name="CrvConvVal" Type="numeric" Precision="27" Scale="7" Nullable="false" />
+          <Property Name="CrvCutOffTm" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="CrvFcr1" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="CrvFcr2" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="CrvFcr3" Type="numeric" Precision="15" Scale="2" />
+          <Property Name="CrvPk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CrvRowid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CrvCreatedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CrvCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="CrvModifiedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CrvModifiedDt" Type="datetime" Nullable="false" />
+          <Property Name="CrvDelFlg" Type="char" MaxLength="10" />
+          <Property Name="CrvDelId" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="ProFaCurdefs">
+          <Key>
+            <PropertyRef Name="CurPK" />
+          </Key>
+          <Property Name="CurPK" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurCd" Type="nvarchar(max)" />
+          <Property Name="CurDesc" Type="nvarchar(max)" />
+          <Property Name="CurDispNm" Type="nvarchar(max)" />
+          <Property Name="CurSecCur" Type="nvarchar(max)" />
+          <Property Name="CurRowid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CurCreatedBy" Type="nvarchar(max)" />
+          <Property Name="CurCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="CurModifiedBy" Type="nvarchar(max)" />
+          <Property Name="CurModifiedDt" Type="datetime" Nullable="false" />
+          <Property Name="CurDelFlg" Type="nvarchar(max)" />
+          <Property Name="CurDelId" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="ProFaMgTimeZone">
+          <Key>
+            <PropertyRef Name="TZnPk" />
+          </Key>
+          <Property Name="TZnCd" Type="varchar" MaxLength="25" />
+          <Property Name="TZnDesc" Type="varchar" MaxLength="50" />
+          <Property Name="TZnDispNm" Type="varchar" MaxLength="100" />
+          <Property Name="TZnoffset" Type="varchar" MaxLength="25" />
+          <Property Name="TZnoffsetmin" Type="varchar" MaxLength="25" />
+          <Property Name="TZnPk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TZnRowid" Type="uniqueidentifier" />
+          <Property Name="TZnCreatedBy" Type="char" MaxLength="10" />
+          <Property Name="TZnCreatedDt" Type="datetime" />
+          <Property Name="TZnModifiedBy" Type="char" MaxLength="10" />
+          <Property Name="TZnModifiedDt" Type="datetime" />
+          <Property Name="TZnDelFlg" Type="char" MaxLength="15" />
+          <Property Name="TZnDelId" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="ProjectRooms">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="RoomID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rooms">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SampleDB_EF.dbo.tmp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp">
+          <Key>
+            <PropertyRef Name="CmpCd" />
+            <PropertyRef Name="CmpDesc" />
+            <PropertyRef Name="CmpDispNm" />
+            <PropertyRef Name="CmpPk" />
+            <PropertyRef Name="CmpCreatedBy" />
+            <PropertyRef Name="CmpCreatedDt" />
+            <PropertyRef Name="CmpModifiedBy" />
+            <PropertyRef Name="CmpModifiedDt" />
+            <PropertyRef Name="CmpDelId" />
+          </Key>
+          <Property Name="CmpCd" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpDispNm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="bigint" />
+          <Property Name="CmpPk" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CmpRowid" Type="uniqueidentifier" />
+          <Property Name="CmpCreatedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpModifiedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpDelFlg" Type="char" MaxLength="15" />
+          <Property Name="CmpDelId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SampleDB_EF.dbo.tmp1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tmp1">
+          <Key>
+            <PropertyRef Name="CmpCd" />
+            <PropertyRef Name="CmpDesc" />
+            <PropertyRef Name="CmpDispNm" />
+            <PropertyRef Name="CmpPk" />
+            <PropertyRef Name="CmpCreatedBy" />
+            <PropertyRef Name="CmpCreatedDt" />
+            <PropertyRef Name="CmpModifiedBy" />
+            <PropertyRef Name="CmpModifiedDt" />
+            <PropertyRef Name="CmpDelId" />
+          </Key>
+          <Property Name="CmpCd" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpDesc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpDispNm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="bigint" />
+          <Property Name="CmpPk" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CmpRowid" Type="uniqueidentifier" />
+          <Property Name="CmpCreatedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpModifiedBy" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="datetime" Nullable="false" />
+          <Property Name="CmpDelFlg" Type="char" MaxLength="15" />
+          <Property Name="CmpDelId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SampleDB_EF.dbo.TmpSvsInterComp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TmpSvsInterComp">
+          <Key>
+            <PropertyRef Name="ProcessDt" />
+          </Key>
+          <Property Name="ProcessDt" Type="datetime" Nullable="false" />
+          <Property Name="Details" Type="varchar" MaxLength="10" />
+          <Property Name="Company" Type="varchar" MaxLength="10" />
+          <Property Name="TCnt" Type="int" />
+          <Property Name="TCnt1" Type="int" />
+          <Property Name="dispord" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SampleDB_EF.dbo.UniqCustCode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UniqCustCode">
+          <Key>
+            <PropertyRef Name="CompShrtDescr" />
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="CompShrtDescr" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="12" />
+          <Property Name="FullName" Type="varchar" MaxLength="85" />
+          <Property Name="CorrAddress" Type="varchar" MaxLength="210" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="PinCode" Type="numeric" Precision="9" Scale="0" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="25" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="StatFlag" Type="char" MaxLength="1" />
+          <Property Name="AadharNo" Type="varchar" MaxLength="20" />
+          <Property Name="PAN" Type="varchar" MaxLength="30" />
+          <Property Name="RationCardNo" Type="varchar" MaxLength="30" />
+          <Property Name="DrivingLicenseNo" Type="varchar" MaxLength="30" />
+          <Property Name="PassportNo" Type="varchar" MaxLength="30" />
+          <Property Name="VoterID" Type="varchar" MaxLength="30" />
+          <Property Name="UnitName" Type="varchar" MaxLength="50" />
+          <Property Name="StateName" Type="varchar" MaxLength="30" />
+          <Property Name="Key1" Type="varchar" MaxLength="17" />
+          <Property Name="Name" Type="varchar" MaxLength="85" />
+          <Property Name="Addr" Type="varchar" MaxLength="210" />
+          <Property Name="Dumy" Type="tinyint" />
+          <Property Name="Processed" Type="char" MaxLength="1" />
+          <Property Name="pkid" Type="int" Nullable="false" />
+          <Property Name="AadharNoMod" Type="varchar" MaxLength="20" />
+          <Property Name="PANMod" Type="varchar" MaxLength="20" />
+          <Property Name="RationCardNoMod" Type="varchar" MaxLength="20" />
+          <Property Name="DrivingLicenseNoMod" Type="varchar" MaxLength="20" />
+          <Property Name="PassportNoMod" Type="varchar" MaxLength="20" />
+          <Property Name="VoterIDMod" Type="varchar" MaxLength="20" />
+          <Property Name="IsLive" Type="bit" />
+          <Property Name="CreatedDt" Type="datetime" />
+          <Property Name="ModifiedDt" Type="datetime" />
+          <Property Name="CustLnDt" Type="datetime" />
+          <Property Name="TmpFld" Type="varchar" MaxLength="100" />
+          <Property Name="LnCnt" Type="int" />
+          <Property Name="IsPrimary" Type="int" />
+          <Property Name="LnCnt2" Type="int" />
+          <Property Name="grpcdchar" Type="varchar" MaxLength="20" />
+          <Property Name="IsSelected" Type="bit" />
+          <Property Name="LnStat" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="CmpCmpFk">
+          <End Role="CmpDet" Type="Self.CmpDet" Multiplicity="0..1" />
+          <End Role="CmpDet1" Type="Self.CmpDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CmpDet">
+              <PropertyRef Name="CmpPk" />
+            </Principal>
+            <Dependent Role="CmpDet1">
+              <PropertyRef Name="CmpCmpFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assets_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Assets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRooms_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="ProjectRooms" Type="Self.ProjectRooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ProjectRooms">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectRooms_Rooms">
+          <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
+          <End Role="ProjectRooms" Type="Self.ProjectRooms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="ProjectRooms">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SampleDB_EFModel1StoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assets" EntityType="Self.Assets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CmpDet" EntityType="Self.CmpDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProFaCurConvConfig" EntityType="Self.ProFaCurConvConfig" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProFaCurdefs" EntityType="Self.ProFaCurdefs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProFaMgTimeZone" EntityType="Self.ProFaMgTimeZone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectRooms" EntityType="Self.ProjectRooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cmpmas" EntityType="Self.cmpmas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [cmpmas].[companynm] AS [companynm], 
+    [cmpmas].[dispord] AS [dispord]
+    FROM [dbo].[cmpmas] AS [cmpmas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmp" EntityType="Self.tmp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tmp].[CmpCd] AS [CmpCd], 
+    [tmp].[CmpDesc] AS [CmpDesc], 
+    [tmp].[CmpDispNm] AS [CmpDispNm], 
+    [tmp].[CmpCmpFk] AS [CmpCmpFk], 
+    [tmp].[CmpPk] AS [CmpPk], 
+    [tmp].[CmpRowid] AS [CmpRowid], 
+    [tmp].[CmpCreatedBy] AS [CmpCreatedBy], 
+    [tmp].[CmpCreatedDt] AS [CmpCreatedDt], 
+    [tmp].[CmpModifiedBy] AS [CmpModifiedBy], 
+    [tmp].[CmpModifiedDt] AS [CmpModifiedDt], 
+    [tmp].[CmpDelFlg] AS [CmpDelFlg], 
+    [tmp].[CmpDelId] AS [CmpDelId]
+    FROM [dbo].[tmp] AS [tmp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tmp1" EntityType="Self.tmp1" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tmp1].[CmpCd] AS [CmpCd], 
+    [tmp1].[CmpDesc] AS [CmpDesc], 
+    [tmp1].[CmpDispNm] AS [CmpDispNm], 
+    [tmp1].[CmpCmpFk] AS [CmpCmpFk], 
+    [tmp1].[CmpPk] AS [CmpPk], 
+    [tmp1].[CmpRowid] AS [CmpRowid], 
+    [tmp1].[CmpCreatedBy] AS [CmpCreatedBy], 
+    [tmp1].[CmpCreatedDt] AS [CmpCreatedDt], 
+    [tmp1].[CmpModifiedBy] AS [CmpModifiedBy], 
+    [tmp1].[CmpModifiedDt] AS [CmpModifiedDt], 
+    [tmp1].[CmpDelFlg] AS [CmpDelFlg], 
+    [tmp1].[CmpDelId] AS [CmpDelId]
+    FROM [dbo].[tmp1] AS [tmp1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TmpSvsInterComp" EntityType="Self.TmpSvsInterComp" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TmpSvsInterComp].[ProcessDt] AS [ProcessDt], 
+    [TmpSvsInterComp].[Details] AS [Details], 
+    [TmpSvsInterComp].[Company] AS [Company], 
+    [TmpSvsInterComp].[TCnt] AS [TCnt], 
+    [TmpSvsInterComp].[TCnt1] AS [TCnt1], 
+    [TmpSvsInterComp].[dispord] AS [dispord]
+    FROM [dbo].[TmpSvsInterComp] AS [TmpSvsInterComp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UniqCustCode" EntityType="Self.UniqCustCode" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UniqCustCode].[CompShrtDescr] AS [CompShrtDescr], 
+    [UniqCustCode].[Code] AS [Code], 
+    [UniqCustCode].[FullName] AS [FullName], 
+    [UniqCustCode].[CorrAddress] AS [CorrAddress], 
+    [UniqCustCode].[City] AS [City], 
+    [UniqCustCode].[PinCode] AS [PinCode], 
+    [UniqCustCode].[MobileNo] AS [MobileNo], 
+    [UniqCustCode].[DateOfBirth] AS [DateOfBirth], 
+    [UniqCustCode].[StatFlag] AS [StatFlag], 
+    [UniqCustCode].[AadharNo] AS [AadharNo], 
+    [UniqCustCode].[PAN] AS [PAN], 
+    [UniqCustCode].[RationCardNo] AS [RationCardNo], 
+    [UniqCustCode].[DrivingLicenseNo] AS [DrivingLicenseNo], 
+    [UniqCustCode].[PassportNo] AS [PassportNo], 
+    [UniqCustCode].[VoterID] AS [VoterID], 
+    [UniqCustCode].[UnitName] AS [UnitName], 
+    [UniqCustCode].[StateName] AS [StateName], 
+    [UniqCustCode].[Key1] AS [Key1], 
+    [UniqCustCode].[Name] AS [Name], 
+    [UniqCustCode].[Addr] AS [Addr], 
+    [UniqCustCode].[Dumy] AS [Dumy], 
+    [UniqCustCode].[Processed] AS [Processed], 
+    [UniqCustCode].[pkid] AS [pkid], 
+    [UniqCustCode].[AadharNoMod] AS [AadharNoMod], 
+    [UniqCustCode].[PANMod] AS [PANMod], 
+    [UniqCustCode].[RationCardNoMod] AS [RationCardNoMod], 
+    [UniqCustCode].[DrivingLicenseNoMod] AS [DrivingLicenseNoMod], 
+    [UniqCustCode].[PassportNoMod] AS [PassportNoMod], 
+    [UniqCustCode].[VoterIDMod] AS [VoterIDMod], 
+    [UniqCustCode].[IsLive] AS [IsLive], 
+    [UniqCustCode].[CreatedDt] AS [CreatedDt], 
+    [UniqCustCode].[ModifiedDt] AS [ModifiedDt], 
+    [UniqCustCode].[CustLnDt] AS [CustLnDt], 
+    [UniqCustCode].[TmpFld] AS [TmpFld], 
+    [UniqCustCode].[LnCnt] AS [LnCnt], 
+    [UniqCustCode].[IsPrimary] AS [IsPrimary], 
+    [UniqCustCode].[LnCnt2] AS [LnCnt2], 
+    [UniqCustCode].[grpcdchar] AS [grpcdchar], 
+    [UniqCustCode].[IsSelected] AS [IsSelected], 
+    [UniqCustCode].[LnStat] AS [LnStat]
+    FROM [dbo].[UniqCustCode] AS [UniqCustCode]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="CmpCmpFk" Association="Self.CmpCmpFk">
+            <End Role="CmpDet" EntitySet="CmpDet" />
+            <End Role="CmpDet1" EntitySet="CmpDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assets_Rooms" Association="Self.FK_Assets_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRooms_Projects" Association="Self.FK_ProjectRooms_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ProjectRooms" EntitySet="ProjectRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectRooms_Rooms" Association="Self.FK_ProjectRooms_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="ProjectRooms" EntitySet="ProjectRooms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SampleDB_EFModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asset">
+          <Key>
+            <PropertyRef Name="AssetID" />
+          </Key>
+          <Property Name="AssetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoomID" Type="Int32" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Assets_Rooms" FromRole="Assets" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="CmpDet">
+          <Key>
+            <PropertyRef Name="CmpPk" />
+          </Key>
+          <Property Name="CmpCd" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpDispNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="Int64" />
+          <Property Name="CmpPk" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CmpRowid" Type="Guid" />
+          <Property Name="CmpCreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpModifiedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpDelFlg" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="CmpDelId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="CmpDet1" Relationship="Self.CmpCmpFk" FromRole="CmpDet" ToRole="CmpDet1" />
+          <NavigationProperty Name="CmpDet2" Relationship="Self.CmpCmpFk" FromRole="CmpDet1" ToRole="CmpDet" />
+        </EntityType>
+        <EntityType Name="ProFaCurConvConfig">
+          <Key>
+            <PropertyRef Name="CrvPk" />
+          </Key>
+          <Property Name="CrvLocFk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvBasCurFk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvConCurFk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="CrvByRt" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CrvSelRt" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="CrvEffFrm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CrvEffTo" Type="DateTime" Precision="3" />
+          <Property Name="CrvConvVal" Type="Decimal" Precision="27" Scale="7" Nullable="false" />
+          <Property Name="CrvCutOffTm" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CrvFcr1" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="CrvFcr2" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="CrvFcr3" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="CrvPk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CrvRowid" Type="Guid" Nullable="false" />
+          <Property Name="CrvCreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CrvCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CrvModifiedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CrvModifiedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CrvDelFlg" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="CrvDelId" Type="Byte" />
+        </EntityType>
+        <EntityType Name="ProFaCurdef">
+          <Key>
+            <PropertyRef Name="CurPK" />
+          </Key>
+          <Property Name="CurPK" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurCd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurDispNm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurSecCur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurRowid" Type="Guid" Nullable="false" />
+          <Property Name="CurCreatedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurModifiedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurModifiedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurDelFlg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurDelId" Type="Byte" />
+        </EntityType>
+        <EntityType Name="ProFaMgTimeZone">
+          <Key>
+            <PropertyRef Name="TZnPk" />
+          </Key>
+          <Property Name="TZnCd" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TZnDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TZnDispNm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TZnoffset" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TZnoffsetmin" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="TZnPk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TZnRowid" Type="Guid" />
+          <Property Name="TZnCreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TZnCreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="TZnModifiedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TZnModifiedDt" Type="DateTime" Precision="3" />
+          <Property Name="TZnDelFlg" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="TZnDelId" Type="Byte" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rooms" Relationship="Self.ProjectRooms" FromRole="Projects" ToRole="Rooms" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Assets" Relationship="Self.FK_Assets_Rooms" FromRole="Rooms" ToRole="Assets" />
+          <NavigationProperty Name="Projects" Relationship="Self.ProjectRooms" FromRole="Rooms" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="cmpma">
+          <Key>
+            <PropertyRef Name="companynm" />
+          </Key>
+          <Property Name="companynm" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dispord" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tmp">
+          <Key>
+            <PropertyRef Name="CmpCd" />
+            <PropertyRef Name="CmpDesc" />
+            <PropertyRef Name="CmpDispNm" />
+            <PropertyRef Name="CmpPk" />
+            <PropertyRef Name="CmpCreatedBy" />
+            <PropertyRef Name="CmpCreatedDt" />
+            <PropertyRef Name="CmpModifiedBy" />
+            <PropertyRef Name="CmpModifiedDt" />
+            <PropertyRef Name="CmpDelId" />
+          </Key>
+          <Property Name="CmpCd" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpDispNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="Int64" />
+          <Property Name="CmpPk" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CmpRowid" Type="Guid" />
+          <Property Name="CmpCreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpModifiedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpDelFlg" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="CmpDelId" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmp1">
+          <Key>
+            <PropertyRef Name="CmpCd" />
+            <PropertyRef Name="CmpDesc" />
+            <PropertyRef Name="CmpDispNm" />
+            <PropertyRef Name="CmpPk" />
+            <PropertyRef Name="CmpCreatedBy" />
+            <PropertyRef Name="CmpCreatedDt" />
+            <PropertyRef Name="CmpModifiedBy" />
+            <PropertyRef Name="CmpModifiedDt" />
+            <PropertyRef Name="CmpDelId" />
+          </Key>
+          <Property Name="CmpCd" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpDispNm" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CmpCmpFk" Type="Int64" />
+          <Property Name="CmpPk" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CmpRowid" Type="Guid" />
+          <Property Name="CmpCreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpCreatedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpModifiedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CmpModifiedDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CmpDelFlg" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="CmpDelId" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TmpSvsInterComp">
+          <Key>
+            <PropertyRef Name="ProcessDt" />
+          </Key>
+          <Property Name="ProcessDt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Details" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TCnt" Type="Int32" />
+          <Property Name="TCnt1" Type="Int32" />
+          <Property Name="dispord" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UniqCustCode">
+          <Key>
+            <PropertyRef Name="CompShrtDescr" />
+            <PropertyRef Name="pkid" />
+          </Key>
+          <Property Name="CompShrtDescr" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FullName" Type="String" MaxLength="85" FixedLength="false" Unicode="false" />
+          <Property Name="CorrAddress" Type="String" MaxLength="210" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PinCode" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="MobileNo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="StatFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="AadharNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PAN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RationCardNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DrivingLicenseNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PassportNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="VoterID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UnitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StateName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Key1" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="85" FixedLength="false" Unicode="false" />
+          <Property Name="Addr" Type="String" MaxLength="210" FixedLength="false" Unicode="false" />
+          <Property Name="Dumy" Type="Byte" />
+          <Property Name="Processed" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="pkid" Type="Int32" Nullable="false" />
+          <Property Name="AadharNoMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PANMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RationCardNoMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DrivingLicenseNoMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PassportNoMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VoterIDMod" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsLive" Type="Boolean" />
+          <Property Name="CreatedDt" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDt" Type="DateTime" Precision="3" />
+          <Property Name="CustLnDt" Type="DateTime" Precision="3" />
+          <Property Name="TmpFld" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LnCnt" Type="Int32" />
+          <Property Name="IsPrimary" Type="Int32" />
+          <Property Name="LnCnt2" Type="Int32" />
+          <Property Name="grpcdchar" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IsSelected" Type="Boolean" />
+          <Property Name="LnStat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Assets_Rooms">
+          <End Role="Rooms" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Assets" Type="Self.Asset" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rooms">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="Assets">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CmpCmpFk">
+          <End Role="CmpDet" Type="Self.CmpDet" Multiplicity="0..1" />
+          <End Role="CmpDet1" Type="Self.CmpDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CmpDet">
+              <PropertyRef Name="CmpPk" />
+            </Principal>
+            <Dependent Role="CmpDet1">
+              <PropertyRef Name="CmpCmpFk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProjectRooms">
+          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <End Role="Rooms" Type="Self.Room" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="SampleDB_EFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Assets" EntityType="Self.Asset" />
+          <EntitySet Name="CmpDets" EntityType="Self.CmpDet" />
+          <EntitySet Name="ProFaCurConvConfigs" EntityType="Self.ProFaCurConvConfig" />
+          <EntitySet Name="ProFaCurdefs" EntityType="Self.ProFaCurdef" />
+          <EntitySet Name="ProFaMgTimeZones" EntityType="Self.ProFaMgTimeZone" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="cmpmas" EntityType="Self.cmpma" />
+          <EntitySet Name="tmps" EntityType="Self.tmp" />
+          <EntitySet Name="tmp1" EntityType="Self.tmp1" />
+          <EntitySet Name="TmpSvsInterComps" EntityType="Self.TmpSvsInterComp" />
+          <EntitySet Name="UniqCustCodes" EntityType="Self.UniqCustCode" />
+          <AssociationSet Name="FK_Assets_Rooms" Association="Self.FK_Assets_Rooms">
+            <End Role="Rooms" EntitySet="Rooms" />
+            <End Role="Assets" EntitySet="Assets" />
+          </AssociationSet>
+          <AssociationSet Name="CmpCmpFk" Association="Self.CmpCmpFk">
+            <End Role="CmpDet" EntitySet="CmpDets" />
+            <End Role="CmpDet1" EntitySet="CmpDets" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectRooms" Association="Self.ProjectRooms">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Rooms" EntitySet="Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SampleDB_EFModel1StoreContainer" CdmEntityContainer="SampleDB_EFEntities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assets">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.Asset">
+              <MappingFragment StoreEntitySet="Assets">
+                <ScalarProperty Name="AssetID" ColumnName="AssetID" />
+                <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CmpDets">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.CmpDet">
+              <MappingFragment StoreEntitySet="CmpDet">
+                <ScalarProperty Name="CmpCd" ColumnName="CmpCd" />
+                <ScalarProperty Name="CmpDesc" ColumnName="CmpDesc" />
+                <ScalarProperty Name="CmpDispNm" ColumnName="CmpDispNm" />
+                <ScalarProperty Name="CmpCmpFk" ColumnName="CmpCmpFk" />
+                <ScalarProperty Name="CmpPk" ColumnName="CmpPk" />
+                <ScalarProperty Name="CmpRowid" ColumnName="CmpRowid" />
+                <ScalarProperty Name="CmpCreatedBy" ColumnName="CmpCreatedBy" />
+                <ScalarProperty Name="CmpCreatedDt" ColumnName="CmpCreatedDt" />
+                <ScalarProperty Name="CmpModifiedBy" ColumnName="CmpModifiedBy" />
+                <ScalarProperty Name="CmpModifiedDt" ColumnName="CmpModifiedDt" />
+                <ScalarProperty Name="CmpDelFlg" ColumnName="CmpDelFlg" />
+                <ScalarProperty Name="CmpDelId" ColumnName="CmpDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProFaCurConvConfigs">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.ProFaCurConvConfig">
+              <MappingFragment StoreEntitySet="ProFaCurConvConfig">
+                <ScalarProperty Name="CrvLocFk" ColumnName="CrvLocFk" />
+                <ScalarProperty Name="CrvBasCurFk" ColumnName="CrvBasCurFk" />
+                <ScalarProperty Name="CrvConCurFk" ColumnName="CrvConCurFk" />
+                <ScalarProperty Name="CrvByRt" ColumnName="CrvByRt" />
+                <ScalarProperty Name="CrvSelRt" ColumnName="CrvSelRt" />
+                <ScalarProperty Name="CrvEffFrm" ColumnName="CrvEffFrm" />
+                <ScalarProperty Name="CrvEffTo" ColumnName="CrvEffTo" />
+                <ScalarProperty Name="CrvConvVal" ColumnName="CrvConvVal" />
+                <ScalarProperty Name="CrvCutOffTm" ColumnName="CrvCutOffTm" />
+                <ScalarProperty Name="CrvFcr1" ColumnName="CrvFcr1" />
+                <ScalarProperty Name="CrvFcr2" ColumnName="CrvFcr2" />
+                <ScalarProperty Name="CrvFcr3" ColumnName="CrvFcr3" />
+                <ScalarProperty Name="CrvPk" ColumnName="CrvPk" />
+                <ScalarProperty Name="CrvRowid" ColumnName="CrvRowid" />
+                <ScalarProperty Name="CrvCreatedBy" ColumnName="CrvCreatedBy" />
+                <ScalarProperty Name="CrvCreatedDt" ColumnName="CrvCreatedDt" />
+                <ScalarProperty Name="CrvModifiedBy" ColumnName="CrvModifiedBy" />
+                <ScalarProperty Name="CrvModifiedDt" ColumnName="CrvModifiedDt" />
+                <ScalarProperty Name="CrvDelFlg" ColumnName="CrvDelFlg" />
+                <ScalarProperty Name="CrvDelId" ColumnName="CrvDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProFaCurdefs">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.ProFaCurdef">
+              <MappingFragment StoreEntitySet="ProFaCurdefs">
+                <ScalarProperty Name="CurPK" ColumnName="CurPK" />
+                <ScalarProperty Name="CurCd" ColumnName="CurCd" />
+                <ScalarProperty Name="CurDesc" ColumnName="CurDesc" />
+                <ScalarProperty Name="CurDispNm" ColumnName="CurDispNm" />
+                <ScalarProperty Name="CurSecCur" ColumnName="CurSecCur" />
+                <ScalarProperty Name="CurRowid" ColumnName="CurRowid" />
+                <ScalarProperty Name="CurCreatedBy" ColumnName="CurCreatedBy" />
+                <ScalarProperty Name="CurCreatedDt" ColumnName="CurCreatedDt" />
+                <ScalarProperty Name="CurModifiedBy" ColumnName="CurModifiedBy" />
+                <ScalarProperty Name="CurModifiedDt" ColumnName="CurModifiedDt" />
+                <ScalarProperty Name="CurDelFlg" ColumnName="CurDelFlg" />
+                <ScalarProperty Name="CurDelId" ColumnName="CurDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProFaMgTimeZones">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.ProFaMgTimeZone">
+              <MappingFragment StoreEntitySet="ProFaMgTimeZone">
+                <ScalarProperty Name="TZnCd" ColumnName="TZnCd" />
+                <ScalarProperty Name="TZnDesc" ColumnName="TZnDesc" />
+                <ScalarProperty Name="TZnDispNm" ColumnName="TZnDispNm" />
+                <ScalarProperty Name="TZnoffset" ColumnName="TZnoffset" />
+                <ScalarProperty Name="TZnoffsetmin" ColumnName="TZnoffsetmin" />
+                <ScalarProperty Name="TZnPk" ColumnName="TZnPk" />
+                <ScalarProperty Name="TZnRowid" ColumnName="TZnRowid" />
+                <ScalarProperty Name="TZnCreatedBy" ColumnName="TZnCreatedBy" />
+                <ScalarProperty Name="TZnCreatedDt" ColumnName="TZnCreatedDt" />
+                <ScalarProperty Name="TZnModifiedBy" ColumnName="TZnModifiedBy" />
+                <ScalarProperty Name="TZnModifiedDt" ColumnName="TZnModifiedDt" />
+                <ScalarProperty Name="TZnDelFlg" ColumnName="TZnDelFlg" />
+                <ScalarProperty Name="TZnDelId" ColumnName="TZnDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.Room">
+              <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cmpmas">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.cmpma">
+              <MappingFragment StoreEntitySet="cmpmas">
+                <ScalarProperty Name="companynm" ColumnName="companynm" />
+                <ScalarProperty Name="dispord" ColumnName="dispord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmps">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.tmp">
+              <MappingFragment StoreEntitySet="tmp">
+                <ScalarProperty Name="CmpCd" ColumnName="CmpCd" />
+                <ScalarProperty Name="CmpDesc" ColumnName="CmpDesc" />
+                <ScalarProperty Name="CmpDispNm" ColumnName="CmpDispNm" />
+                <ScalarProperty Name="CmpCmpFk" ColumnName="CmpCmpFk" />
+                <ScalarProperty Name="CmpPk" ColumnName="CmpPk" />
+                <ScalarProperty Name="CmpRowid" ColumnName="CmpRowid" />
+                <ScalarProperty Name="CmpCreatedBy" ColumnName="CmpCreatedBy" />
+                <ScalarProperty Name="CmpCreatedDt" ColumnName="CmpCreatedDt" />
+                <ScalarProperty Name="CmpModifiedBy" ColumnName="CmpModifiedBy" />
+                <ScalarProperty Name="CmpModifiedDt" ColumnName="CmpModifiedDt" />
+                <ScalarProperty Name="CmpDelFlg" ColumnName="CmpDelFlg" />
+                <ScalarProperty Name="CmpDelId" ColumnName="CmpDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmp1">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.tmp1">
+              <MappingFragment StoreEntitySet="tmp1">
+                <ScalarProperty Name="CmpCd" ColumnName="CmpCd" />
+                <ScalarProperty Name="CmpDesc" ColumnName="CmpDesc" />
+                <ScalarProperty Name="CmpDispNm" ColumnName="CmpDispNm" />
+                <ScalarProperty Name="CmpCmpFk" ColumnName="CmpCmpFk" />
+                <ScalarProperty Name="CmpPk" ColumnName="CmpPk" />
+                <ScalarProperty Name="CmpRowid" ColumnName="CmpRowid" />
+                <ScalarProperty Name="CmpCreatedBy" ColumnName="CmpCreatedBy" />
+                <ScalarProperty Name="CmpCreatedDt" ColumnName="CmpCreatedDt" />
+                <ScalarProperty Name="CmpModifiedBy" ColumnName="CmpModifiedBy" />
+                <ScalarProperty Name="CmpModifiedDt" ColumnName="CmpModifiedDt" />
+                <ScalarProperty Name="CmpDelFlg" ColumnName="CmpDelFlg" />
+                <ScalarProperty Name="CmpDelId" ColumnName="CmpDelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TmpSvsInterComps">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.TmpSvsInterComp">
+              <MappingFragment StoreEntitySet="TmpSvsInterComp">
+                <ScalarProperty Name="ProcessDt" ColumnName="ProcessDt" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="TCnt" ColumnName="TCnt" />
+                <ScalarProperty Name="TCnt1" ColumnName="TCnt1" />
+                <ScalarProperty Name="dispord" ColumnName="dispord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniqCustCodes">
+            <EntityTypeMapping TypeName="SampleDB_EFModel1.UniqCustCode">
+              <MappingFragment StoreEntitySet="UniqCustCode">
+                <ScalarProperty Name="CompShrtDescr" ColumnName="CompShrtDescr" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="CorrAddress" ColumnName="CorrAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="StatFlag" ColumnName="StatFlag" />
+                <ScalarProperty Name="AadharNo" ColumnName="AadharNo" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="RationCardNo" ColumnName="RationCardNo" />
+                <ScalarProperty Name="DrivingLicenseNo" ColumnName="DrivingLicenseNo" />
+                <ScalarProperty Name="PassportNo" ColumnName="PassportNo" />
+                <ScalarProperty Name="VoterID" ColumnName="VoterID" />
+                <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="Key1" ColumnName="Key1" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Addr" ColumnName="Addr" />
+                <ScalarProperty Name="Dumy" ColumnName="Dumy" />
+                <ScalarProperty Name="Processed" ColumnName="Processed" />
+                <ScalarProperty Name="pkid" ColumnName="pkid" />
+                <ScalarProperty Name="AadharNoMod" ColumnName="AadharNoMod" />
+                <ScalarProperty Name="PANMod" ColumnName="PANMod" />
+                <ScalarProperty Name="RationCardNoMod" ColumnName="RationCardNoMod" />
+                <ScalarProperty Name="DrivingLicenseNoMod" ColumnName="DrivingLicenseNoMod" />
+                <ScalarProperty Name="PassportNoMod" ColumnName="PassportNoMod" />
+                <ScalarProperty Name="VoterIDMod" ColumnName="VoterIDMod" />
+                <ScalarProperty Name="IsLive" ColumnName="IsLive" />
+                <ScalarProperty Name="CreatedDt" ColumnName="CreatedDt" />
+                <ScalarProperty Name="ModifiedDt" ColumnName="ModifiedDt" />
+                <ScalarProperty Name="CustLnDt" ColumnName="CustLnDt" />
+                <ScalarProperty Name="TmpFld" ColumnName="TmpFld" />
+                <ScalarProperty Name="LnCnt" ColumnName="LnCnt" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="LnCnt2" ColumnName="LnCnt2" />
+                <ScalarProperty Name="grpcdchar" ColumnName="grpcdchar" />
+                <ScalarProperty Name="IsSelected" ColumnName="IsSelected" />
+                <ScalarProperty Name="LnStat" ColumnName="LnStat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProjectRooms" TypeName="SampleDB_EFModel1.ProjectRooms" StoreEntitySet="ProjectRooms">
+            <EndProperty Name="Projects">
+              <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+            </EndProperty>
+            <EndProperty Name="Rooms">
+              <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

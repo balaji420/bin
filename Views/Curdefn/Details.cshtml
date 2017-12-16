@@ -1,0 +1,50 @@
+﻿@model CurApi.Models.ProFaCurdef
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>curdef</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurCd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurCd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurDispNm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurDispNm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurSecCur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurSecCur)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CurPK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

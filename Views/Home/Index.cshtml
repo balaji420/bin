@@ -1,0 +1,11 @@
+﻿@section SPAViews {
+    @Html.Partial("_Home")
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/app")
+}
+<div>
+    @Html.ActionLink("List of Currencies in DB", "Index", "Curdefn") <br />
+    @Html.ActionLink("List from CuurencyConfigTable", "Index", "Curconfig")
+</div>

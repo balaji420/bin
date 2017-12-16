@@ -1,0 +1,176 @@
+﻿@model CurApi.Models.curconvconfig
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>curconvconfig</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvLocFk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvLocFk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvBasCurFk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvBasCurFk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvConCurFk)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvConCurFk)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvByRt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvByRt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvSelRt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvSelRt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvEffFrm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvEffFrm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvEffTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvEffTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvConvVal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvConvVal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvCutOffTm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvCutOffTm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvFcr1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvFcr1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvFcr2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvFcr2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvFcr3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvFcr3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvRowid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvRowid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvCreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvCreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvCreatedDt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvCreatedDt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvModifiedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvModifiedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvModifiedDt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvModifiedDt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvDelFlg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvDelFlg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CrvDelId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CrvDelId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
